@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<beans>
+    
+    <bean id="parentTriangle" class="javabrains.Triangle">
+        <property name="pointA" ref="pointA" />
+<!--    Using an inner bean accessible only for this triangle object, no performance difference      
+        <bean name="pointC" class="javabrains.Point">
+            <property name="x" value="20" />
+            <property name="y" value="0" />
+--> 
+    </bean>
+  
+    <bean id="triangle1" class="javabrains.Triangle" parent="parentTriangle">
+        <property name="pointB" ref="pointB" />
+        <property name="pointC" ref="pointC" />
+    </bean>
+        
+    <bean id="pointA" class="javabrains.Point">
+        <property name="x" value="0" />
+        <property name="y" value="0" />
+    </bean>
+    
+    <bean id="pointB" class="javabrains.Point">
+        <property name="x" value="-20" />
+        <property name="y" value="0" />
+    </bean>
+    
+    <bean id="pointC" class="javabrains.Point">
+        <property name="x" value="-20" />
+        <property name="y" value="0" />
+    </bean>
+    
+    <bean id="circle" class="javabrains.Circle">
+        <property name="center" ref="pointA" />
+    </bean>
+    
+    <bean class="javabrains.DisplayNameBeanPostProcessonr" />
+    
+    <!-- Defining properties file for strings -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>mymessages</value>
+            </list>
+        </property>
+    </bean>
+    
+<!--   <context:annotation-config/>    -->
+
+</beans>
+    
